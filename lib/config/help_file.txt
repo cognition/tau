@@ -1,0 +1,99 @@
+
+                                        ######################################
+                                        #######        Tau Help        #######
+                                        ######################################
+
+About:
+Tau is a server side ruby program that connect to the a Rooted Android System by created an ssh handshake and
+    sends a discrete set of commands.
+    This is used when an Android device has an ssh server running and adb disabled.
+
+Comand Line Usage:
+      /%tau command {ip/options}
+
+  Universal Flags
+    -a --all        will update the whole fleet
+    -H --building      specifies a building(s)
+    -F  --floor     floor takes a floor name
+    -r  --room      Room number
+    --ip            unit IP address (defaut)
+    -h --help       displays this
+    -R --random     Randomly select set of rooms (used for A/B testing)
+        --size      used with -R for selecting the number of units to gernerate
+        -name       used to give the set a uniq identifier
+    --csv           reads comma separed values from STD unless --file is called
+    --file          take --file as list of commands in cvs format
+    --host          if the address is using a dns hostname with domain   [TODO]
+    --domain        if units are using dns hostnames with seperated domains
+                    (ie unit.localation.domain.com,  etc.. )  [TODO]
+
+  Commands
+
+    update                        to Update apks or OS
+      --pkg=apk-package-name      Specific Package to update
+      --pkgs                      requires -V will update all packages in directory
+                                  at that version number
+      -V                          Version number (see below for naming conventions)
+      --os                        takes no input
+      --self                      checks git for newer released version, then will install it
+      --library
+            --up                  this will perform a git branch / check / commit of the library
+                                  of commands, then push them upto a central repo for QA approval
+                                  to distribute.
+            --down                this will pull down any updated library commands  created on other
+                                  systems from a QA approved branch
+
+
+    add                           This will start a dialog for adding in a new command into the library
+      --type                      [system,am,pm]
+      --name                      the command that will be used to call function
+
+
+    test command                  this will test a command for functionality
+        --ip                      the test IP
+        --sym                     this will test the command using rspec tests
+
+
+
+    reboot                         reboots a unit or depending on Universal flags more
+
+    get-status                     pulls a report of unit health
+
+    get-location                   pulls the units location infromation
+
+    brick                          will remotely brick a unit  *password is needed to perform this
+                                   function and it not available via restful api
+
+    rebrand                        will load and over write site specific information
+
+    reset                          will reset and wipe all guest information on unit
+      factory                      will reset unit to factory
+
+    admin (on/off)                 turns on and loads administration user on tablet, for field tech
+
+    adb                            enable adb on unit for administration via usb
+
+    install (package_name)         installs a package to unit  (like adb install some-app.apk)
+
+    open                           lauches an app
+      shell                        opens a shell above Launcher
+
+
+
+
+##################
+
+  File naming conventions and directory listing:
+
+      apks:
+        /opt/tau/media/updates/apk/package_name.apk.version
+      os:
+        /opt/tau/media/updates/os/os_update.zip.version
+      media files:
+        /opt/tau/media/audio/audio_file_name.(ogg,mp3).version
+        /opt/tau/media/video/video_file_name.(mp4,avi).version
+
+##
+# writen by Ramon Brooker <rbrooker@aetherealmind.com>
+# (c) 2013
+##

@@ -1,0 +1,43 @@
+##
+# writen by Ramon Brooker <rbrooker@aetherealmind.com>
+# (c) 2013
+##
+
+# all commands are placed here for use within Tau
+---
+commands:
+    # turn off Navbar-bolt
+    show_nav: "am broadcast -a SHOW_NAV_BAR"
+    # restart device
+    restart_device: "/system/bin/reboot"
+    # restart Arbalest
+    restart_launch: "am start -S com.example.launcher/.MainActivity"
+    # clear data of app
+    clear_data: "pm clear com.example.launcher"
+    # enable read/write
+    writable: "mount -o remount,rw /system"
+    # enable admin mode
+    admin_mode: "/system/bin/admin.sh"
+    # ps command
+    ps: "ps a"
+    # hostname
+    hostname: "hostname"
+    # netcfg
+    netcfg: "netcfg"
+    # adb_start
+    adb_start: "/system/bin/adbd"
+    # netcat
+    netcat: "netcat"
+    # update Demo
+    update_demo:
+      from: "../../../updates/apps/Demo.apk"
+      to: "/sdcard/"
+      action: "ls /sdcard"
+    update_demo_s:
+      from: "../../../updates/apps/Demo.apk"
+      to: "/sdcard/app/"
+      action: "mount -o remount,rw /system; cp /sdcard/Demo.apk /system/apps/"
+
+
+
+

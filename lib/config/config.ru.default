@@ -1,0 +1,15 @@
+##
+# writen by Ramon Brooker <rbrooker@aetherealmind.com>
+# (c) 2013
+##
+
+require "rubygems"
+require "sinatra"
+require "tau"
+
+#TauSinatra.public_folder = "/public"
+
+
+use Rack::RestApiVersioning
+run TauSinatra
+

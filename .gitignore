@@ -23,4 +23,5 @@ tmp
 *.db
 lib/config/test.yml
 lib/tau/y_test.rb
-
+.ruby-gemset
+.ruby-version
